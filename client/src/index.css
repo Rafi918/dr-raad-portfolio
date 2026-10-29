@@ -604,3 +604,82 @@ html { background: var(--paper); }
 .is-dark .utility-button:hover, .is-dark .menu-button:hover { background: var(--copper-light); border-color: var(--copper-light); }
 .is-dark .text-button { background: rgba(244,240,232,.94); color: #142d3d; }
 .is-dark .text-button:hover { background: var(--copper-light); color: #142d3d; }
+
+/* ===== taste-skill redesign pass — «الصفحة هي الملف» (page-is-the-object, seed 1222710507) ===== */
+/* Headline accent word removed: one face, one colour, the words carry the emphasis */
+.hero-copy h1 em, h2 em, .is-english .hero-copy h1 em, .is-english h2 em, .contact-copy h2 em { color: inherit; font-style: normal; }
+/* Type scale: fewer, larger steps */
+.hero-copy h1 { font-size: clamp(48px, 6.6vw, 90px); line-height: 1.14; }
+.section-heading h2 { font-size: clamp(30px, 4.2vw, 54px); }
+.section-copy { font-size: 15px; }
+.about-columns p { font-size: 15px; }
+.hero-lede { font-size: 18px; }
+/* Flat timeline rail (was a gradient) */
+.timeline::before { background: rgba(184, 120, 74, .45); }
+/* Ledger metrics: oversized figures, tone steps instead of hairlines */
+.metric strong { font-size: clamp(54px, 5.8vw, 86px); }
+.metrics-intro, .metric { border-left: 0; }
+.metric:nth-child(odd) { background: rgba(20, 45, 61, .045); }
+.is-dark .metric:nth-child(odd) { background: rgba(236, 241, 237, .05); }
+/* Small labels: sentence case, readable size */
+.timeline-detail > span, .publication-details > span { text-transform: none; letter-spacing: .01em; font-size: 11px; }
+/* Hero entrance: parts rise in stagger on load */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy > * { animation: heroRise 720ms var(--ease-out) both; }
+  .hero-copy > *:nth-child(2) { animation-delay: 90ms; }
+  .hero-copy > *:nth-child(3) { animation-delay: 180ms; }
+  .hero-copy > *:nth-child(4) { animation-delay: 270ms; }
+  .hero-copy > *:nth-child(5) { animation-delay: 360ms; }
+  .hero-panel { animation: heroRise 720ms var(--ease-out) 300ms both; }
+  @keyframes heroRise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+}
+/* Book-spine shelf — the live thing: his real books as spines, a spine opens its record */
+.book-shelf { display: flex; align-items: stretch; gap: 6px; margin: 44px 0 8px; min-height: 340px; }
+.book-spine { flex: 1 1 0; min-width: 34px; max-width: 74px; height: 340px; padding: 20px 0 16px; border: 0; cursor: pointer; display: flex; justify-content: center; overflow: hidden; transition: transform 220ms var(--ease-out), filter 220ms var(--ease-out), background 220ms var(--ease-out); }
+.book-spine span { writing-mode: vertical-rl; font-family: "Noto Kufi Arabic", sans-serif; font-size: 15px; font-weight: 600; line-height: 1.7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-height: 100%; }
+.book-spine.tone-0 { background: var(--ink); color: #f4efe6; }
+.book-spine.tone-1 { background: var(--copper); color: #fdf8f1; }
+.book-spine.tone-2 { background: var(--paper-deep); color: var(--ink); }
+.book-spine.tone-3 { background: #fbf8f2; color: var(--ink); }
+.book-spine:hover, .book-spine:focus-visible { transform: translateY(-10px); }
+.book-spine.is-selected { background: var(--copper); color: #fff; transform: translateY(-14px); }
+.book-shelf:has(.book-spine.is-selected) .book-spine:not(.is-selected) { filter: saturate(.55); }
+.is-english .book-spine span { font-family: "Playfair Display", Georgia, serif; }
+@media (max-width: 700px) {
+  .book-shelf { flex-direction: column; min-height: 0; gap: 8px; }
+  .book-spine { flex: none; width: 100%; max-width: none; height: auto; min-height: 52px; padding: 12px 16px; justify-content: flex-start; align-items: center; }
+  .book-spine span { writing-mode: horizontal-tb; white-space: normal; font-size: 13px; }
+  .book-spine:hover, .book-spine.is-selected { transform: none; }
+}
+/* Gallery tiles with filled label strips (replaces overlay captions) */
+.taste-gallery .gallery-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 22px 14px; }
+.gallery-tile { grid-column: span 3; margin: 0; display: flex; flex-direction: column; background: var(--ink); }
+.gallery-tile img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: saturate(.78); }
+.gallery-tile figcaption { padding: 14px 14px 16px; display: grid; gap: 6px; }
+.gallery-tile figcaption span { font-size: 11px; font-weight: 600; }
+.gallery-tile figcaption strong { font-family: "Noto Kufi Arabic", sans-serif; font-size: 14px; font-weight: 600; line-height: 1.65; }
+.gallery-tile figcaption p { margin: 0; font-size: 12px; line-height: 1.8; opacity: .85; }
+.gallery-tile.tone-0 { background: var(--ink); color: #f4efe6; }
+.gallery-tile.tone-0 figcaption span { color: var(--copper-light); }
+.gallery-tile.tone-1 { background: var(--paper-deep); color: var(--ink); }
+.gallery-tile.tone-1 figcaption span { color: var(--copper); }
+.gallery-tile.tone-2 { background: var(--copper); color: #fdf8f1; }
+.gallery-tile.tone-2 figcaption span { color: #ffe9d2; }
+.gallery-tile.tone-3 { background: #fbf8f2; color: var(--ink); }
+.gallery-tile.tone-3 figcaption span { color: var(--copper); }
+.is-dark .gallery-tile.tone-1, .is-dark .gallery-tile.tone-3 { color: #142d3d; }
+@media (max-width: 700px) {
+  .taste-gallery .gallery-grid { grid-template-columns: 1fr 1fr; gap: 14px 10px; }
+  .gallery-tile { grid-column: span 1; }
+  .gallery-tile figcaption p { display: block; font-size: 11px; }
+}
+/* Honors: the printed guest-list card, tilted on a deep ground */
+.honors-section { background: var(--paper-deep); overflow: hidden; }
+.honors-card { background: #f8f4ed; transform: rotate(-1.1deg); padding: clamp(30px, 5vw, 62px); }
+.is-dark .honors-card { --ink: #142d3d; --ink-soft: #36505a; --line: rgba(20, 45, 61, .16); color: #142d3d; }
+.is-dark .honors-card .award-item p, .is-dark .honors-card .honors-quote p, .is-dark .honors-card .section-copy { color: #36505a; }
+@media (max-width: 700px) { .honors-card { transform: rotate(-.6deg); padding: 26px 20px; } }
+/* Contact: visit card on a photograph */
+.contact-section { position: relative; isolation: isolate; }
+.contact-photo { position: absolute; inset: 0; z-index: -1; background-size: cover; background-position: center; opacity: .13; filter: saturate(.55); }
+.contact-grid { position: relative; }
