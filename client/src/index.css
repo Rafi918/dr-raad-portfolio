@@ -683,3 +683,39 @@ html { background: var(--paper); }
 .contact-section { position: relative; isolation: isolate; }
 .contact-photo { position: absolute; inset: 0; z-index: -1; background-size: cover; background-position: center; opacity: .13; filter: saturate(.55); }
 .contact-grid { position: relative; }
+
+/* ===== Hero v2 — صفحة عنوان المخطوط (manuscript title page) ===== */
+.hero2-section { background: #142d3d; color: #f4efe6; padding: clamp(54px, 7.5vw, 104px) 0 0; overflow: hidden; position: relative; }
+.hero2-grid { display: grid; grid-template-columns: 1.22fr .78fr; gap: clamp(30px, 5vw, 76px); align-items: center; }
+.hero2-kicker { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 13.5px; font-weight: 600; color: #d9a066; }
+.hero2-name { font-family: "Noto Kufi Arabic", sans-serif; font-size: clamp(56px, 8.4vw, 122px); line-height: 1.14; font-weight: 700; color: #f8f3e7; margin: 20px 0 24px; }
+.is-english .hero2-name { font-family: "Playfair Display", Georgia, serif; }
+.hero2-lede { font-size: 18px; line-height: 2.05; color: rgba(244, 239, 230, .84); max-width: 58ch; margin: 0; }
+.hero2-quote { margin: 28px 0 0; padding-inline-start: 18px; border-inline-start: 4px solid var(--copper); font-size: 16px; line-height: 2; color: rgba(248, 243, 231, .94); }
+.hero2-cta { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; margin-top: 36px; }
+.hero2-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--copper); color: #fff; font-weight: 700; font-size: 15px; padding: 14px 28px; border-radius: 3px; text-decoration: none; transition: background 200ms var(--ease-out), transform 200ms var(--ease-out); }
+.hero2-btn:hover { background: #a0683c; transform: translateY(-2px); }
+.hero2-link { background: none; border: 0; border-bottom: 2px solid var(--copper); color: #f4efe6; font: inherit; font-size: 15px; font-weight: 600; padding: 0 0 4px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.hero2-plate { margin: 0; }
+.hero2-plate img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; box-shadow: 14px 14px 0 var(--copper); filter: saturate(.85); }
+.hero2-plate figcaption { display: flex; justify-content: space-between; gap: 14px; margin-top: 28px; font-size: 12.5px; line-height: 1.8; color: rgba(244, 239, 230, .72); }
+.hero2-colophon { margin-top: clamp(42px, 6vw, 74px); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.hero2-fact { background: rgba(244, 239, 230, .055); padding: 22px 20px 30px; }
+.hero2-fact:nth-child(even) { background: rgba(244, 239, 230, .1); }
+.hero2-fact strong { display: block; font-size: clamp(19px, 1.9vw, 24px); line-height: 1.55; color: #fff; font-weight: 700; }
+.hero2-fact span { display: block; margin-top: 6px; font-size: 12.5px; line-height: 1.85; color: rgba(244, 239, 230, .68); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero2-copy > * { animation: heroRise 720ms var(--ease-out) both; }
+  .hero2-copy > *:nth-child(2) { animation-delay: 90ms; }
+  .hero2-copy > *:nth-child(3) { animation-delay: 180ms; }
+  .hero2-copy > *:nth-child(4) { animation-delay: 270ms; }
+  .hero2-copy > *:nth-child(5) { animation-delay: 360ms; }
+  .hero2-plate { animation: heroRise 720ms var(--ease-out) 240ms both; }
+  .hero2-colophon { animation: heroRise 720ms var(--ease-out) 420ms both; }
+}
+@media (max-width: 900px) {
+  .hero2-grid { grid-template-columns: 1fr; }
+  .hero2-plate img { aspect-ratio: 16 / 10; }
+  .hero2-colophon { grid-template-columns: 1fr 1fr; }
+  .hero2-name { font-size: clamp(46px, 13vw, 64px); }
+}
